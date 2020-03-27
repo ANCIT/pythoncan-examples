@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.7 on linux)" generated="20200327 11:14:30.448" rpa="false">
+<suite id="s1" name="canRaw example" source="/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/canRaw_example.robot">
+<test id="s1-t1" name="Check the reception of a CAN signal 01">
+<kw name="Set CAN Bus socketcan vcan0 500000 /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:30.715" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:30.715" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:30.718" level="INFO">unknown file type "/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/outputs/20200327/Check the reception of a CAN signal 01_20200327_111430", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200327 11:14:30.714" endtime="20200327 11:14:30.719"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.713" endtime="20200327 11:14:30.719"></status>
+</kw>
+<kw name="Check CAN Signal MSSpeed Equals To 0 TimeOut ${DEFAULT TIMEOUT} Seconds" library="curf">
+<kw name="Check Signal" library="Curf">
+<doc>Check the reception of give signal
+with the given time out value
+Keyword arguments:
+signal_name -- signal expected name to be received
+expect_value -- signal expected value to be received
+time_out -- timeout value in second for the reception
+node_name -- Node ID (optional)</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${SIGNAL VALUE}</arg>
+<arg>${TIME OUT}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:30.977" level="INFO">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20200327 11:14:30.720" endtime="20200327 11:14:30.977"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.719" endtime="20200327 11:14:30.977"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200327 11:14:30.979" endtime="20200327 11:14:30.980"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.978" endtime="20200327 11:14:30.980"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.713" endtime="20200327 11:14:30.981" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Send a given signal 01">
+<kw name="Set CAN Bus socketcan vcan0 500000 /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:30.985" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:30.986" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:30.987" level="INFO">unknown file type "/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/outputs/20200327/Send a given signal 01_20200327_111430", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200327 11:14:30.984" endtime="20200327 11:14:30.988"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.983" endtime="20200327 11:14:30.988"></status>
+</kw>
+<kw name="Send Signal MCSpeed With Value 50" library="curf">
+<kw name="Send Signal" library="Curf">
+<doc>Send a CAN signal from Database
+Keyword arguments:
+signal_name -- Name of the signal to send
+value -- Value of the signal to send</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${VALUE}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:30.989" level="INFO">Timestamp:        0.000000    ID: 00000011    X                DLC:  2    32 00</msg>
+<status status="PASS" starttime="20200327 11:14:30.989" endtime="20200327 11:14:30.990"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.988" endtime="20200327 11:14:30.990"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200327 11:14:30.991" endtime="20200327 11:14:30.992"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.991" endtime="20200327 11:14:30.992"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.981" endtime="20200327 11:14:30.992" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Check the reception of a CAN signal 02">
+<kw name="Set CAN Bus socketcan vcan0 500000 /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:30.994" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:30.995" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:30.998" level="INFO">unknown file type "/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/outputs/20200327/Check the reception of a CAN signal 02_20200327_111430", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200327 11:14:30.993" endtime="20200327 11:14:30.998"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.993" endtime="20200327 11:14:30.998"></status>
+</kw>
+<kw name="Check CAN Signal MSSpeed Equals To 50 TimeOut ${DEFAULT TIMEOUT} Seconds" library="curf">
+<kw name="Check Signal" library="Curf">
+<doc>Check the reception of give signal
+with the given time out value
+Keyword arguments:
+signal_name -- signal expected name to be received
+expect_value -- signal expected value to be received
+time_out -- timeout value in second for the reception
+node_name -- Node ID (optional)</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${SIGNAL VALUE}</arg>
+<arg>${TIME OUT}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:31.977" level="INFO">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20200327 11:14:30.999" endtime="20200327 11:14:31.977"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.998" endtime="20200327 11:14:31.977"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200327 11:14:31.978" endtime="20200327 11:14:31.979"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:31.978" endtime="20200327 11:14:31.979"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:30.992" endtime="20200327 11:14:31.979" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Send a given signal 01">
+<kw name="Set CAN Bus socketcan vcan0 500000 /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:31.983" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:31.983" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:32.004" level="INFO">unknown file type "/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/outputs/20200327/Send a given signal 01_20200327_111431", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200327 11:14:31.981" endtime="20200327 11:14:32.004"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:31.981" endtime="20200327 11:14:32.005"></status>
+</kw>
+<kw name="Send Signal MCSpeed With Value 0" library="curf">
+<kw name="Send Signal" library="Curf">
+<doc>Send a CAN signal from Database
+Keyword arguments:
+signal_name -- Name of the signal to send
+value -- Value of the signal to send</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${VALUE}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:32.007" level="INFO">Timestamp:        0.000000    ID: 00000011    X                DLC:  2    00 00</msg>
+<status status="PASS" starttime="20200327 11:14:32.006" endtime="20200327 11:14:32.007"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.006" endtime="20200327 11:14:32.008"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200327 11:14:32.009" endtime="20200327 11:14:32.010"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.008" endtime="20200327 11:14:32.010"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:31.980" endtime="20200327 11:14:32.010" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Check the reception of a CAN signal 03">
+<kw name="Set CAN Bus socketcan vcan0 500000 /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:32.014" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:32.015" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:32.018" level="INFO">unknown file type "/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/outputs/20200327/Check the reception of a CAN signal 03_20200327_111432", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200327 11:14:32.013" endtime="20200327 11:14:32.018"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.012" endtime="20200327 11:14:32.018"></status>
+</kw>
+<kw name="Check CAN Signal MSSpeed Equals To 0 TimeOut ${DEFAULT TIMEOUT} Seconds" library="curf">
+<kw name="Check Signal" library="Curf">
+<doc>Check the reception of give signal
+with the given time out value
+Keyword arguments:
+signal_name -- signal expected name to be received
+expect_value -- signal expected value to be received
+time_out -- timeout value in second for the reception
+node_name -- Node ID (optional)</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${SIGNAL VALUE}</arg>
+<arg>${TIME OUT}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:32.978" level="INFO">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20200327 11:14:32.020" endtime="20200327 11:14:32.978"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.019" endtime="20200327 11:14:32.978"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200327 11:14:32.980" endtime="20200327 11:14:32.982"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.979" endtime="20200327 11:14:32.982"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.011" endtime="20200327 11:14:32.982" critical="yes"></status>
+</test>
+<test id="s1-t6" name="Send a given signal 01">
+<kw name="Set CAN Bus socketcan vcan0 500000 /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:32.985" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:32.986" level="INFO">Created a socket</msg>
+<msg timestamp="20200327 11:14:32.988" level="INFO">unknown file type "/home/ancit/Documents/malai/python-workspace/python-can-examples/robot-framework/CURF/testsuite/outputs/20200327/Send a given signal 01_20200327_111432", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200327 11:14:32.984" endtime="20200327 11:14:32.990"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.983" endtime="20200327 11:14:32.990"></status>
+</kw>
+<kw name="Send Signal MCSpeed With Value 65535" library="curf">
+<kw name="Send Signal" library="Curf">
+<doc>Send a CAN signal from Database
+Keyword arguments:
+signal_name -- Name of the signal to send
+value -- Value of the signal to send</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${VALUE}</arg>
+</arguments>
+<msg timestamp="20200327 11:14:32.998" level="INFO">Timestamp:        0.000000    ID: 00000011    X                DLC:  2    ff ff</msg>
+<status status="PASS" starttime="20200327 11:14:32.992" endtime="20200327 11:14:32.998"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.991" endtime="20200327 11:14:32.999"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200327 11:14:33.000" endtime="20200327 11:14:33.000"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.999" endtime="20200327 11:14:33.000"></status>
+</kw>
+<status status="PASS" starttime="20200327 11:14:32.983" endtime="20200327 11:14:33.000" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200327 11:14:30.450" endtime="20200327 11:14:33.001"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0">Critical Tests</stat>
+<stat pass="6" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="6" fail="0" id="s1" name="canRaw example">canRaw example</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20200327 11:14:31.980" level="WARN">Multiple test cases with name 'Send a given signal 01' executed in test suite 'canRaw example'.</msg>
+<msg timestamp="20200327 11:14:32.982" level="WARN">Multiple test cases with name 'Send a given signal 01' executed in test suite 'canRaw example'.</msg>
+</errors>
+</robot>

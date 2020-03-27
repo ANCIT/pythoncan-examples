@@ -1,0 +1,227 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNNYNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ReceiveNode TransmitNode
+
+
+BO_ 1536 DiagResponse: 8 Vector__XXX
+
+BO_ 1792 DiagRequest: 8 Vector__XXX
+
+BO_ 2 Ant_LockingRemoteControlRequest: 1 TransmitNode
+ SG_ Ant_LockRequest : 0|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 1 Ant_VehicleMotion: 2 TransmitNode
+ SG_ Ant_EngineRunning : 8|5@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ant_CrashDetected : 0|6@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 68 Ant_WindowControl: 2 TransmitNode
+ SG_ Ant_KeyDown : 8|6@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ant_KeyUp : 0|6@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 17 Ant_WindowState: 2 ReceiveNode
+ SG_ Ant_windowPosition : 8|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ant_WindowMotion : 0|4@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 32 AntitheftsystemMsg: 4 TransmitNode
+ SG_ Ant_Velocity : 8|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ant_TouchSensor : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Ant_LockState : 16|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AntitheftsystemActive : 0|8@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_TX_BU_ 1 : ReceiveNode,TransmitNode;
+BO_TX_BU_ 68 : ReceiveNode,TransmitNode;
+BO_TX_BU_ 17 : ReceiveNode,TransmitNode;
+BO_TX_BU_ 32 : ReceiveNode,TransmitNode;
+
+
+EV_ ENV_MSG1: 0 [0|1] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+CM_ "CAN communication matrix for body electronics
+*******************************************************
+
+implemented: turn lights, warning lights, windows
+
+
+";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "TpAddressingMode" INT 0 3;
+BA_DEF_ SG_  "GenSigAltSetting" STRING ;
+BA_DEF_ BO_  "GenMsgFastOnStart" INT 0 100000;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 2 100000;
+BA_DEF_ BU_  "ILUsed" ENUM  "Yes","No";
+BA_DEF_  "GenNWMSleepTime" INT 0 1000000;
+BA_DEF_ EV_  "GenEnvIsGeneratedDsp" ENUM  "No","Yes";
+BA_DEF_  "GenEnvVarEndingDsp" STRING ;
+BA_DEF_  "GenEnvVarEndingSnd" STRING ;
+BA_DEF_  "GenEnvVarPrefix" STRING ;
+BA_DEF_ EV_  "GenEnvMsgOffset" INT 0 2147483647;
+BA_DEF_ EV_  "GenEnvMsgName" STRING ;
+BA_DEF_ EV_  "GenEnvIsGeneratedSnd" ENUM  "No","Yes";
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_  "NmBaseAddress" HEX 1024 1055;
+BA_DEF_ BU_  "NmStationAddress" INT 0 63;
+BA_DEF_ BU_  "NmNode" ENUM  "no","yes";
+BA_DEF_ BO_  "NmMessage" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "no","yes";
+BA_DEF_ BU_  "TpTxIdentifier" HEX 0 536870911;
+BA_DEF_ BU_  "TpRxIdentifier" HEX 0 536870911;
+BA_DEF_ BU_  "Diagnose-Stationsadresse" HEX 0 255;
+BA_DEF_ BU_  "TpRxMask" HEX 0 65535;
+BA_DEF_ BU_  "TpCanBus" INT 1 2;
+BA_DEF_ BU_  "TpUseFC" INT 0 1;
+BA_DEF_ BU_  "TpNodeBaseAddress" HEX 0 33554431;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 2 50000;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 1 1000;
+BA_DEF_ BO_  "GenMsgAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 100000000000;
+BA_DEF_ BU_  "GenNodSleepTime" INT 0 1000000;
+BA_DEF_ BU_  "GenNodAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ BU_  "GenNodAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigReceiveSetting" STRING ;
+BA_DEF_ SG_  "GenSigEVName" STRING ;
+BA_DEF_ BO_  "GenMsgEVName" STRING ;
+BA_DEF_ BO_  "GenMsgPreSetting" STRING ;
+BA_DEF_ SG_  "GenSigPreSetting" STRING ;
+BA_DEF_ BO_  "GenMsgPostSetting" STRING ;
+BA_DEF_ SG_  "GenSigPostSetting" STRING ;
+BA_DEF_ SG_  "GenSigAssignSetting" STRING ;
+BA_DEF_ BO_  "GenMsgConditionalSend" STRING ;
+BA_DEF_ SG_  "GenSigConditionalSend" STRING ;
+BA_DEF_ BO_  "GenMsgPreIfSetting" STRING ;
+BA_DEF_ BO_  "GenMsgPostIfSetting" STRING ;
+BA_DEF_ SG_  "GenSigPreIfSetting" STRING ;
+BA_DEF_ SG_  "GenSigPostIfSetting" STRING ;
+BA_DEF_ BO_  "GenMsgAltSetting" STRING ;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 999999;
+BA_DEF_ SG_  "NWM-WakeupAllowed" ENUM  "No","Yes";
+BA_DEF_ EV_  "GenEnvControlType" ENUM  "NoControl","SliderHoriz","SliderVert","PushButton","Edit","BitmapSwitch";
+BA_DEF_ EV_  "GenEnvAutoGenCtrl" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigEnvVarType" ENUM  "int","float","undef";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "TpAddressingMode" 1;
+BA_DEF_DEF_  "GenSigAltSetting" "";
+BA_DEF_DEF_  "GenMsgFastOnStart" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 100;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "GenNWMSleepTime" 0;
+BA_DEF_DEF_  "GenEnvIsGeneratedDsp" "No";
+BA_DEF_DEF_  "GenEnvVarEndingDsp" "Dsp_";
+BA_DEF_DEF_  "GenEnvVarEndingSnd" "_";
+BA_DEF_DEF_  "GenEnvVarPrefix" "Env";
+BA_DEF_DEF_  "GenEnvMsgOffset" 0;
+BA_DEF_DEF_  "GenEnvMsgName" "";
+BA_DEF_DEF_  "GenEnvIsGeneratedSnd" "No";
+BA_DEF_DEF_  "NodeLayerModules" "oseknm01.dll";
+BA_DEF_DEF_  "NmBaseAddress" 1024;
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NmNode" "no";
+BA_DEF_DEF_  "NmMessage" "no";
+BA_DEF_DEF_  "DiagResponse" "no";
+BA_DEF_DEF_  "DiagRequest" "no";
+BA_DEF_DEF_  "TpTxIdentifier" 1;
+BA_DEF_DEF_  "TpRxIdentifier" 1;
+BA_DEF_DEF_  "Diagnose-Stationsadresse" 0;
+BA_DEF_DEF_  "TpRxMask" 255;
+BA_DEF_DEF_  "TpCanBus" 1;
+BA_DEF_DEF_  "TpUseFC" 1;
+BA_DEF_DEF_  "TpNodeBaseAddress" 1536;
+BA_DEF_DEF_  "GenMsgSendType" "not_used";
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 2;
+BA_DEF_DEF_  "GenMsgDelayTime" 1;
+BA_DEF_DEF_  "GenMsgAutoGenSnd" "";
+BA_DEF_DEF_  "GenSigAutoGenSnd" "";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenNodSleepTime" 0;
+BA_DEF_DEF_  "GenNodAutoGenSnd" "";
+BA_DEF_DEF_  "GenNodAutoGenDsp" "";
+BA_DEF_DEF_  "GenMsgAutoGenDsp" "";
+BA_DEF_DEF_  "GenSigAutoGenDsp" "";
+BA_DEF_DEF_  "GenSigReceiveSetting" "";
+BA_DEF_DEF_  "GenSigEVName" "";
+BA_DEF_DEF_  "GenMsgEVName" "";
+BA_DEF_DEF_  "GenMsgPreSetting" "";
+BA_DEF_DEF_  "GenSigPreSetting" "";
+BA_DEF_DEF_  "GenMsgPostSetting" "";
+BA_DEF_DEF_  "GenSigPostSetting" "";
+BA_DEF_DEF_  "GenSigAssignSetting" "";
+BA_DEF_DEF_  "GenMsgConditionalSend" "";
+BA_DEF_DEF_  "GenSigConditionalSend" "";
+BA_DEF_DEF_  "GenMsgPreIfSetting" "";
+BA_DEF_DEF_  "GenMsgPostIfSetting" "";
+BA_DEF_DEF_  "GenSigPreIfSetting" "";
+BA_DEF_DEF_  "GenSigPostIfSetting" "";
+BA_DEF_DEF_  "GenMsgAltSetting" "";
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "NWM-WakeupAllowed" "";
+BA_DEF_DEF_  "GenEnvControlType" "";
+BA_DEF_DEF_  "GenEnvAutoGenCtrl" "No";
+BA_DEF_DEF_  "GenSigEnvVarType" "undef";
+BA_ "BusType" "CAN";
+BA_ "GenNWMSleepTime" 5000;
+BA_ "Diagnose-Stationsadresse" BU_ TransmitNode 4;
+BA_ "GenNodAutoGenDsp" BU_ TransmitNode 1;
+BA_ "GenNodAutoGenSnd" BU_ TransmitNode 1;
+BA_ "GenNodSleepTime" BU_ TransmitNode 5000;
+BA_ "TpRxIdentifier" BU_ TransmitNode 1541;
+BA_ "NmNode" BU_ TransmitNode 1;
+BA_ "NodeLayerModules" BU_ TransmitNode "dmoseknm.dll,osek_tp.dll,CANoeILNLVector.dll";
+BA_ "TpTxIdentifier" BU_ TransmitNode 1540;
+BA_ "TpRxMask" BU_ TransmitNode 255;
+BA_ "TpNodeBaseAddress" BU_ TransmitNode 1536;
+BA_ "NmStationAddress" BU_ TransmitNode 26;
+BA_ "GenMsgSendType" BO_ 32 2;
+BA_ "GenMsgCycleTime" BO_ 32 100;
+BA_ "GenMsgAutoGenSnd" BO_ 32 1;
+BA_ "GenMsgAutoGenDsp" BO_ 32 1;
+VAL_ 2 Ant_LockRequest 3 "Comfort_lock" 2 "Request_unlock" 1 "Request_lock" 0 "idle" ;
+VAL_ 17 Ant_WindowMotion 2 "Currently_opening" 1 "Currently_closing" 0 "Not_Moving" ;
+VAL_ 32 Ant_TouchSensor 1 "active" 0 "idle" ;
+VAL_ 32 Ant_LockState 1 "Locked" 0 "unlocked" ;
+VAL_ 32 AntitheftsystemActive 0 "Idle" 1 "Active" ;
+

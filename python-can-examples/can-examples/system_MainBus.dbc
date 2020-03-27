@@ -1,0 +1,25 @@
+VERSION "created by canmatrix"
+
+
+NS_ :
+
+BS_:
+
+BU_: Motor Controller 
+
+
+BO_ 16 MotorStatus: 3 Motor
+ SG_ MSSpeed : 0|16@1+ (1,0) [0|65535] "" Controller
+ SG_ Load : 16|8@1+ (1,0) [0|255] "" Controller
+
+BO_ 17 MotorControl: 2 Controller
+ SG_ MCSpeed : 0|16@1+ (1,0) [0|65535] "" Motor
+
+
+
+
+
+
+
+
+
