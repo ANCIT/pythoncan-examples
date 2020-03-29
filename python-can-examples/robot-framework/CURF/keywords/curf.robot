@@ -71,6 +71,9 @@ Send Frame With ID ${FRAME ID} And ${FRAME DATA} As Data
 
 Send Signal ${SIGNAL NAME} With Value ${VALUE}
         Send Signal     ${SIGNAL NAME}        ${VALUE}
+        
+Send Message ${MSG NAME} Signal ${SIGNAL NAME} With Value ${VALUE}
+        Send Message     ${MSG NAME}    ${SIGNAL NAME}     ${VALUE}
 
 Check The Frame Reception With ID ${FRAME ID} And ${FRAME DATA} As Data Timeout ${TIMEOUT} Seconds
         Check Frame     ${FRAME ID}        ${FRAME DATA}        ${TIMEOUT}

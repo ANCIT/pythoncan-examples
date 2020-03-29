@@ -5,7 +5,7 @@ Test Teardown   End Log Can
 Library    DateTime
 
 *** Variables ***
-${DB FILE}              /home/ancit/Documents/malai/python-workspace/python-can-examples/can-examples/system_MainBus.dbc
+${DB FILE}              /home/ancit/git/pythoncan-examples/python-can-examples/can-examples/system_MainBus.dbc
 ${INTERFACE}            socketcan
 ${CHANNEL}              vcan0
 ${BITRATE}              500000
@@ -28,7 +28,12 @@ Send a given signal 02
     
 Check the reception of a CAN signal 03
     Check CAN Signal MSSpeed Equals To 0 TimeOut ${DEFAULT TIMEOUT} Seconds  
+   
+Send a given signal 04
+    Send Message MotorControl Signal MCSpeed With Value 45
     
 Send a given signal 03
     Send Signal MCSpeed With Value 65535
+    
+
     

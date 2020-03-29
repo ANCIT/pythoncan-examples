@@ -249,6 +249,28 @@ class Curf:
         else:
             raise AssertionError('Signal : %s is not in Database' %
                                  (signal_name))
+    def send_message(self, message_name, signal_name, value):
+        """ Send a CAN signal from Database
+        Keyword arguments:
+        signal_name -- Name of the signal to send
+        value -- Value of the signal to send
+        """
+        signal_dict = {signal_name: float(value)}
+        message_to_send = self.db.get_message_by_name(message_name)
+        if message_to_send is not None:
+            for signal in message_to_send.signals:
+                if signal.name != signal_name and signal is not None:
+                    signal_dict[signal.name] = 0.0
+
+            message_to_send = self.db.get_message_by_name(message_name)
+            data = message_to_send.encode(signal_dict)
+            message = can.Message(
+                arbitration_id=message_to_send.frame_id, data=data)
+            print(message)
+            self.bus.send(message)
+        else:
+            raise AssertionError('Signal : %s is not in Database' %
+                                 (signal_name))
 
     # def send_signals(self,signal_dict):
 
