@@ -19,8 +19,8 @@ cantools
 - tester node <check and send> : Unit Testing : HTML Report
   
 robot framework
-canisotp, cantools, uds
-python : libraries functions
-keyword robot : Language : keyword robot will inturn invoke the python libraries
-test robot : Should follow the syntax of the keyword robot
+- canisotp, cantools, uds
+- python : libraries functions
+- keyword robot : Language : keyword robot will inturn invoke the python libraries
+- test robot : Should follow the syntax of the keyword robot
 
