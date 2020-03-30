@@ -1,5 +1,5 @@
 
-# Configuring VCAN in Linux
+# Configuring VCAN [Virtual CAN] in Linux
 
 
 *   $ sudo modprobe vcan
