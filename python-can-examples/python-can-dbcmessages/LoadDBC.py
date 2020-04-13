@@ -5,7 +5,7 @@ Created on 24-Mar-2020
 '''
 import cantools
 from can.message import Message
-db = cantools.db.load_file('/home/ancit/Documents/malai/python-workspace/python-can-examples/motohawk.dbc')
+db = cantools.db.load_file('/home/bk/git/pythoncan-examples/python-can-examples/resources/motohawk.dbc')
 # print the content of the dbc
 print(db)
 
