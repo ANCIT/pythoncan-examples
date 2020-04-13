@@ -1,6 +1,7 @@
 ## Requirements
 
-They are a few dependencies, the library must work in Linux and Windows
+Few python dependencies that you need to install to continue further. These libraries work in Linux and Windows
+Python3 installation would be preferred.
 
 ```shell
 pip install robotframework
