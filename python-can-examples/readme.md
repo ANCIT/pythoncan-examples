@@ -1,6 +1,7 @@
 ## Requirements
 
-They are a few dependencies, the library must work in Linux and Windows
+Few python dependencies that you need to install to continue further. These libraries work in Linux and Windows
+Python3 installation would be preferred.
 
 ```shell
 pip install robotframework
@@ -9,3 +10,30 @@ pip install cantools
 pip install can-isotp
 pip install canmatrix
 ```
+
+Contains Python examples for CAN protocol
+
+can-utils
+
+    candump [Listens to CANBUS]
+    cansend [Sends CAN Message on CANBUS]
+    cangen [Sends Random CAN Messages on CANBUS]
+    cansniffer [Similar to candump]
+    canmonitor [Textual UI for candump >> Filter, Clear]
+
+Python >> CAN Raw Message Send and Receive CAN Raw Message Periodic Send
+
+cantools
+
+    It works on DBC / ARXML / KCD
+    Load DBC -> Message and Signal
+    Send CAN Message using DBC Encoding and Receive thru DBC Decoding thru Python
+    candump | cantools
+    tester node : Unit Testing : HTML Report
+
+robot framework
+
+    canisotp, cantools, uds
+    python : libraries functions
+    keyword robot : Language : keyword robot will inturn invoke the python libraries
+    test robot : Should follow the syntax of the keyword robot
