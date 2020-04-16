@@ -7,7 +7,7 @@ from __future__ import print_function
 import can
 import cantools
 import threading
-db = cantools.db.load_file('airbag_MainBus.dbc')
+db = cantools.db.load_file('/home/bk/git/pythoncan-examples/python-can-usecases/06_AirBagControlECU/airbag_MainBus.dbc')
 can_bus = can.interface.Bus(bustype='socketcan',channel='vcan0',bitrate=250000)
 
 VehicleMotionMsg = db.get_message_by_name('VehicleMotion')

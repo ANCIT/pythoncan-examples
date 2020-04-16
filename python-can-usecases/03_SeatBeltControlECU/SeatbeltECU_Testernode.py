@@ -35,7 +35,7 @@ def get_current_key_input():
         listener.join()
 
 
-msg = can.Message(arbitration_id=0xc0ffee,data=[0, 25, 0, 0, 0, 0, 0, 0],is_extended_id=False)
+msg = can.Message(arbitration_id=0x011,data=[0, 25, 0, 0, 0, 0, 0, 0],is_extended_id=False)
 try:
     task = bus.send_periodic(msg,0.2)
     print("Message sent on {}".format(bus.channel_info))
