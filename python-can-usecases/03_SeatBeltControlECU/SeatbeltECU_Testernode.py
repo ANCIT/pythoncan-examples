@@ -11,21 +11,24 @@ from pynput import keyboard
 bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate=250000)
 
 def on_press(key):
-    if key.char == 'a': # for brake condition
-        msg = can.Message(arbitration_id=0x011,data=[0, 1],is_extended_id=False)
-        try:
-            bus.send(msg)
-            print("Message sent on {}".format(bus.channel_info))
-        except can.CanError:
-            print("Message NOT sent")
-    
-    if key.char == 'b': # for acceleration
-        msg = can.Message(arbitration_id=0x022,data=[0, 0],is_extended_id=False)
-        try:
-            bus.send(msg)
-            print("Message sent on {}".format(bus.channel_info))
-        except can.CanError:
-            print("Message NOT sent")
+    try:
+        if key.char == 'a': # for brake condition
+            msg = can.Message(arbitration_id=0x011,data=[0, 1],is_extended_id=False)
+            try:
+                bus.send(msg)
+                print("Message sent on {}".format(bus.channel_info))
+            except can.CanError:
+                print("Message NOT sent")
+        
+        if key.char == 'b': # for acceleration
+            msg = can.Message(arbitration_id=0x022,data=[0, 0],is_extended_id=False)
+            try:
+                bus.send(msg)
+                print("Message sent on {}".format(bus.channel_info))
+            except can.CanError:
+                print("Message NOT sent")
+    except AttributeError:
+        pass
  
 def get_current_key_input():
     with keyboard.Listener(on_press=on_press) as listener:
