@@ -18,6 +18,7 @@ def on_Message():
 		if response.arbitration_id == 0x09:
 			# Message ID : 0x08
 			message = can.Message(arbitration_id=0x08, data=[0], is_extended_id=False)
+			print("AC is off",data)
 			try:
 				can_bus.send(message)
 				print(" 0x08 Message sent on {}".format(can_bus.channel_info))
@@ -27,6 +28,7 @@ def on_Message():
 		if response.arbitration_id == 0x10:
 			# Message ID : 0x08
 			message = can.Message(arbitration_id=0x08, data=[1], is_extended_id=False)
+			print("AC is ON",data)
 			try:
 				can_bus.send(message)
 				print(" 0x08 Message sent on {}".format(can_bus.channel_info))
@@ -34,26 +36,29 @@ def on_Message():
 				print("Message NOT sent")
 
 def on_press(key):
-	print("Key Event Identified")
-	
-	if key.char == 'a': # handles if key press is a
-			# Message ID : 0x09
-			message = can.Message(arbitration_id=0x09, data=[20,0,0,0,0,0,0,0], is_extended_id=False)
-			try:
-				can_bus.send(message)
-				print(" 0x09 Message sent on {}".format(can_bus.channel_info))
-			except can.CanError:
-				print("Message NOT sent")
+    
+    print("Key Event Identified")
+    
+    if key.char == 'a':
+        
+        
+            message = can.Message(arbitration_id=0x09, data=[20,0,0,0,0,0,0,0], is_extended_id=False)
+            try:
+                can_bus.send(message)
+                print(" 0x09 Message sent on {}".format(can_bus.channel_info))
+            except can.CanError:
+                print("Message NOT sent")
+            
 
-	if key.char == 'b': # handles if key press is b
-			# Message ID : 0x10
-			message = can.Message(arbitration_id=0x10, data=[30,0,0,0,0,0,0,0], is_extended_id=False)
-			try:
-				can_bus.send(message)
-				print(" 0x10 Message sent on {}".format(can_bus.channel_info))
-			except can.CanError:
-				print("Message NOT sent")
-
+    if key.char == 'b':
+        
+        
+            message = can.Message(arbitration_id=0x10, data=[30,0,0,0,0,0,0,0], is_extended_id=False)
+            try:
+                can_bus.send(message)
+                print(" 0x10 Message sent on {}".format(can_bus.channel_info))
+            except can.CanError:
+                print("Message NOT sent")
 
 def on_Key():
 	keyboard.Listener(on_press=on_press).start()
