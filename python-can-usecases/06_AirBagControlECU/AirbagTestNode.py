@@ -1,4 +1,4 @@
-#Date : Wed Apr 15 2020
+#Date : Wed Apr 16 2020
 #Author : Manzoor A
 #Script to Test Airbag ECU Simulation
 
@@ -39,7 +39,7 @@ def _crashDetected():
     message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" Crash Detected:\t\t{}".format(data))
+        print(" Crash with Engine ON:\t\t{}".format(data))
     except can.CanError:
         print("Message NOT sent")
  
@@ -49,30 +49,51 @@ def _crashFree():
     message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" Crash Detected:\t\t{}".format(data))
+        print(" No Crash with Engine ON:\t\t{}".format(data))
+    except can.CanError:
+        print("Message NOT sent")
+
+def _engineOffCrash():
+    # Send Engine off and Crash Detected Message
+    data = VehicleMotionMsg.encode({'Velocity':0,'CrashDetected':1,'EngineRunning':0})
+    message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
+    try:
+        can_bus.send(message)
+        print(" Crash with Engine Off:\t\t{}".format(data))
     except can.CanError:
         print("Message NOT sent")
  
 def on_press(key):
-    print("Key Event Identified")
     try:
+        if key.char == 'l': # if key 'l' pressed
+            _SeatbeltLock()
         if key.char == 'u': # if key 'u' pressed
             _SeatbeltUnock()
         if key.char == 'c': # if key 'c' pressed
             _crashDetected()
-        if key.char == 'f': # if lkey 'c' pressed
+        if key.char == 'o': # if key 'f' pressed
+            _engineOffCrash()
+        if key.char == 'f': # if key 'c' pressed
             _crashFree()
-        if key.char == 'l': # if key 'l' pressed
-            _SeatbeltLock()
         if key == keyboard.Key.esc:  # if esc is pressed, terminate
             return False    # Stop listener   
     except AttributeError:
-        pass
+        print(" Unknown Key Event")
 #                 
 def on_Key():
     # Collect events until on_press return fail
     with keyboard.Listener(on_press=on_press) as listener:
         listener.join()
 
+def instruction():
+    print("Simulation Keys Are\n\
+            l: Lock Seatbelt\n\
+            u: Unock Seatbelt\n\
+            c: Crash with Engine On\n\
+            o: Crash with Engine Off\n\
+            f: Crash free with Engine On\n")
+
 if __name__ == '__main__':
+    instruction()
     on_Key()
+    
