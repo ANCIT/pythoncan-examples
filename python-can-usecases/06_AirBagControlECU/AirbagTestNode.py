@@ -13,13 +13,15 @@ can_bus = can.interface.Bus(bustype='socketcan',channel='vcan0',bitrate=250000)
  
 VehicleMotionMsg = db.get_message_by_name('VehicleMotion')
 SeatbeltSystemMsg = db.get_message_by_name('SeatbeltSystem')
+airbagSystemMsg = db.get_message_by_name('AirbagSystem')
+
 def _SeatbeltUnock():
     # Send Seatbelt Unlock Message
     data = SeatbeltSystemMsg.encode({'SeatbeltState':0})
     message = can.Message(arbitration_id=SeatbeltSystemMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" Seatbelt Unlocked:\t\t{}".format(data))
+        print(" Seatbelt Unlocked")
     except can.CanError:
         print("Message NOT sent")
  
@@ -29,7 +31,7 @@ def _SeatbeltLock():
     message = can.Message(arbitration_id=SeatbeltSystemMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" Seatbelt Locked:\t\t{}".format(data))
+        print(" Seatbelt Locked")
     except can.CanError:
         print("Message NOT sent")
          
@@ -39,7 +41,7 @@ def _crashDetected():
     message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" Crash with Engine ON:\t\t{}".format(data))
+        print(" Crash with Engine ON")
     except can.CanError:
         print("Message NOT sent")
  
@@ -49,7 +51,7 @@ def _crashFree():
     message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" No Crash with Engine ON:\t\t{}".format(data))
+        print(" No Crash with Engine ON")
     except can.CanError:
         print("Message NOT sent")
 
@@ -59,7 +61,7 @@ def _engineOffCrash():
     message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
-        print(" Crash with Engine Off:\t\t{}".format(data))
+        print(" Crash with Engine Off")
     except can.CanError:
         print("Message NOT sent")
  
@@ -82,18 +84,39 @@ def on_press(key):
 #                 
 def on_Key():
     # Collect events until on_press return fail
-    with keyboard.Listener(on_press=on_press) as listener:
-        listener.join()
-
+#     with keyboard.Listener(on_press=on_press) as listener:
+#         listener.start()
+    keyboard.Listener(on_press=on_press).start()
+        
+        
+def on_Message():
+    while True:
+        response = can_bus.recv()
+        msgData = db.decode_message(response.arbitration_id, response.data)
+        if response.arbitration_id == airbagSystemMsg.frame_id:
+            airbagState = (msgData['airbagState'])
+            #if Seatbelt is not Worn
+            if (airbagState == 'Idle'):
+                # Trigger Idle Airbag
+                print("\t\t\tAirbag in Active Mode")
+            if (airbagState == 'Inactive'):
+                #Trigger Inactive Airbag
+                print("\t\t\tAirbag in In-active Mode")
+            if (airbagState == 'Active'):
+                # Trigger Release Airbag
+                print("\t\t\tAirbag Released")    
+                
 def instruction():
-    print("Simulation Keys Are\n\
+    print("Simulation Keys:\n\
             l: Lock Seatbelt\n\
             u: Unock Seatbelt\n\
             c: Crash with Engine On\n\
             o: Crash with Engine Off\n\
             f: Crash free with Engine On\n")
+    print("--Test Msg--\t\t--Evaluated Msg--")
 
 if __name__ == '__main__':
     instruction()
     on_Key()
+    threading.Thread(on_Message()).start()
     
