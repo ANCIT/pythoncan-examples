@@ -1,0 +1,38 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message CentralLockingSystemState LState;
+  message LockingRemoteControlRequest LReq;
+  message VehicleMotion VCE;
+  message WindowControl KE;
+  message WindowState WM;
+}
+
+on message LockingRemoteControlRequest
+{
+  write("CASE Response : Door Unlocked on UnlockDoor Request");
+  LState.LockState=0x0; // LockState=Unlocked 0x0
+  output(LState);
+}
+
+on message WindowControl
+{
+  write("CASE Response : Window Closed with Engine Velocity 20 on Door Locked");
+  WM.WindowPosition=1;
+  WM.WindowMotion=0x1;  //Window Motion=Closed 0x1
+  output(WM);
+}
+
+on message CentralLockingSystemState
+{
+  write("CASE Response : Comfort Lock Mode");
+  VCE.EngineRunning=1;
+  VCE.CrashDetected=0;
+  output(VCE);        //No Crash
+}
+  
