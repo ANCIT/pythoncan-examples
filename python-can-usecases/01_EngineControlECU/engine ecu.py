@@ -37,7 +37,7 @@ def apply_break():
 	except can.CanError:
 		print("Message NOT sent")
 		
-def apply_accilerate1():
+def apply_accelerate1():
 	message = can.Message(arbitration_id=0x10, data=[0,0,10,1], is_extended_id=False)
 	print("Accileration : 10")
 	try:
@@ -46,7 +46,7 @@ def apply_accilerate1():
 	except can.CanError:
 		print("Message NOT sent")	
 
-def apply_accilerate2():
+def apply_accelerate2():
 	message = can.Message(arbitration_id=0x10, data=[0,0,20,1], is_extended_id=False)
 	print("Accileration : 20")
 	try:
@@ -62,9 +62,9 @@ def on_Message():
 		data = response.data
 		if response.arbitration_id == 0x020:	
 			if response.data == bytearray(b'\n\x00\x00\x00'):
-				apply_accilerate1()
+				apply_accelerate1()
 			if response.data == bytearray(b'\x14\x00\x00\x00'):
-				apply_accilerate2()
+				apply_accelerate2()
 	
 		if response.arbitration_id == 0x030:
 			apply_break()
