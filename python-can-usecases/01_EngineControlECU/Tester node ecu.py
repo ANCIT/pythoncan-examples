@@ -29,7 +29,7 @@ def _accelerate2():
 def _break():
    
     message = can.Message(arbitration_id= 0x30, data=[0,0,0,0], is_extended_id=False)
-    print("Engine speed accelerated to 0kmph")
+    print(" Break is applied and Engine speed is 0kmph")
     try:
         can_bus.send(message)
         #print(" 0x30 Message sent on {}".format(can_bus.channel_info))
@@ -55,7 +55,7 @@ def on_Key():
         listener.join()
 
 if __name__ == '__main__':
-    #instruction()
+    
     on_Key()
     
             
