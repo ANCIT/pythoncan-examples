@@ -13,10 +13,10 @@ def on_Message():
 		if response.data == : [1,1,1,1,1,1,1,1] 
 			# Message ID : 0x03 to initialize accelerator and break
 			message = can.Message(arbitration_id=0x10, data=[2,2,2,2,2,2,2,2], is_extended_id=False)
-			print("Accelerator and Break are initilised")
+			print("Accelerator and Break are initilized")
 			try:
 				can_bus.send(message)
-				print(" 0x03 Message sent on {}".format(can_bus.channel_info))
+				print(" 0x10 Message sent on {}".format(can_bus.channel_info))
 			except can.CanError:
 				print("Message NOT sent")
 
@@ -26,8 +26,8 @@ def initialization():
             message = can.Message(arbitration_id=0x10, data=[1,1,1,1,1,1,1,1], is_extended_id=False)
             print("Engine is ON")
             try:
-                task = can_bus.send_periodic(message,1.0) # cycle time
-                print(" 0x02 Message sent on {}".format(can_bus.channel_info))
+                task = can_bus.send(message) # cycle time
+                print(" 0x10 Message sent on {}".format(can_bus.channel_info))
             except can.CanError:
                 print("Message NOT sent")
 
