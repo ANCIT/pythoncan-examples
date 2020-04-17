@@ -1,59 +1,62 @@
 from __future__ import print_function
 import can
-import time
 import cantools
-from pynput import keyboard
 import threading
+from pynput import keyboard
 
-can_bus = can.interface.Bus(bustype='socketcan',channel='vcan0',bitrate=1000000)
+can_bus = can.interface.Bus(bustype='socketcan',channel='vcan0',bitrate=250000)
 
-def on_Message():
-	while True:
-		response = can_bus.recv()
-def on_press(key):
-    print("Key Event Identified")
-    if key.char == 'b':
-        # handles if key press is a to ON the engine
-            
-	  # Message ID : 0x04 
-            message = can.Message(arbitration_id=0x20, data=[20,0,0,0,0,0,0,0], is_extended_id=False)
-            print("The engine speed accelerated to 20 kmph")
-            try:
-                can_bus.send(message)
-                print(" 0x20 Message sent on {}".format(can_bus.channel_info))
-            except can.CanError:
-                print("Message NOT sent")
-    
+def _accelerate():
    
+    message = can.Message(arbitration_id= 0x20, data=[20,0,0,0,0,0,0,0], is_extended_id=False)
+    print("Engine speed accelerated to 20kmph")
+    try:
+        can_bus.send(message)
+        print(" 0x20 Message sent on {}".format(can_bus.channel_info))
+    except can.CanError:
+        print("Message NOT sent")
 
-    if key.char == 'c': # handles if key press is c to accelerate to 60kmph
-			# Message ID : 0x05
-	    message = can.Message(arbitration_id=0x20, data=[60,0,0,0,0,0,0,0], is_extended_id=False)
-	    print("The engine speed accelerated to 60kmph")
-	    try:
-		    can_bus.send(message)
-		    print(" 0x20 Message sent on {}".format(can_bus.channel_info))
-	    except can.CanError:
-		    print("Message NOT sent")
+def _accelerate2():
+   
+    message = can.Message(arbitration_id= 0x20, data=[60,0,0,0,0,0,0,0], is_extended_id=False)
+    print("Engine speed accelerated to 60kmph")
+    try:
+        can_bus.send(message)
+        print(" 0x20 Message sent on {}".format(can_bus.channel_info))
+    except can.CanError:
+        print("Message NOT sent")
+ 
+def _break():
+   
+    message = can.Message(arbitration_id= 0x30, data=[0,0,0,0,0,0,0,0], is_extended_id=False)
+    print("Engine speed accelerated to 0kmph")
+    try:
+        can_bus.send(message)
+        print(" 0x30 Message sent on {}".format(can_bus.channel_info))
+    except can.CanError:
+        print("Message NOT sent")
 
-    if key.char == 'd': # handles if key press is d to break
-			# Message ID : 0x06
-	    message = can.Message(arbitration_id=0x30, data=[0,0,0,0,0,0,0,0], is_extended_id=False)
-	    print("Break has been applied and engine speed is 0kmph")
-	    try:
-		    can_bus.send(message)
-		    print(" 0x30 Message sent on {}".format(can_bus.channel_info))
-	    except can.CanError:
-		    print("Message NOT sent")
 
-
-def on_Key():
-	keyboard.Listener(on_press=on_press).start()
-
-def sendMessage():
-    
-    if __name__ == '__main__':
+def on_press(key):
+    try:
+        if key.char == 'b': 
+            _accelerate()
+        if key.char == 'c':
+            _accelerate2()
+        if key.char == 'd':
+            _break() 
+        if key == keyboard.Key.esc:
+            return False
+    except AttributeError:
+        print(" Unknown Key Event")
         
-        sendMessage()
-        on_Key()
-        threading.Thread(on_Message()).start()
+def on_Key():
+    with keyboard.Listener(on_press=on_press) as listener:
+        listener.join()
+
+if __name__ == '__main__':
+    instruction()
+    on_Key()
+    
+            
+           

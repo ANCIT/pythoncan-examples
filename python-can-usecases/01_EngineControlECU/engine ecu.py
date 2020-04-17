@@ -7,11 +7,7 @@ import threading
 
 can_bus = can.interface.Bus(bustype='socketcan',channel='vcan0',bitrate=1000000)
 
-def on_Message():
-	while True:
-		response = can_bus.recv()
-		if response.data == : [1,1,1,1,1,1,1,1] 
-			# Message ID : 0x03 to initialize accelerator and break
+def initialize():
 			message = can.Message(arbitration_id=0x10, data=[2,2,2,2,2,2,2,2], is_extended_id=False)
 			print("Accelerator and Break are initilized")
 			try:
@@ -20,13 +16,13 @@ def on_Message():
 			except can.CanError:
 				print("Message NOT sent")
 
-def initialization():
-    
-   
+def engine_on():
+	
             message = can.Message(arbitration_id=0x10, data=[1,1,1,1,1,1,1,1], is_extended_id=False)
             print("Engine is ON")
             try:
-                task = can_bus.send(message) # cycle time
+                can_bus.send(message)
+                initialize() # cycle time
                 print(" 0x10 Message sent on {}".format(can_bus.channel_info))
             except can.CanError:
                 print("Message NOT sent")
@@ -34,7 +30,7 @@ def initialization():
 
 
 
-def sendMessage():
+def engine_off():
 			# Message ID : 0x10
 			message = can.Message(arbitration_id=0x10, data=[0,0,0,0,0,0,0,0], is_extended_id=False)
 			print("Engine is off"")
@@ -46,7 +42,7 @@ def sendMessage():
 
 if __name__ == '__main__':
 
-	sendMessage()
-	initialization()
+	Engine_off()
+	Engine_on()
 	
-	threading.Thread(on_Message()).start()
+	#threading.Thread(on_Message()).start()
