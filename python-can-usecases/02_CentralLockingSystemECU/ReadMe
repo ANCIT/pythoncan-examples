@@ -1,21 +1,31 @@
-*********** Socketcan Quickstart ************
+
+*****************************************Central Locking System Outline ************************************************
+
+Central locking system (CLS): Lock, unlock, comfort lock which locks the car and closes the windows.
+If a crash occurs then the CLS unlocks the car. The window lift supports opening and closing functions
+Functionalities adhere to the comfort.dbc files, consisting of messages and signals that are mapped.
+
+Use cases have been implemented. 
+Programs with .can files supports cannoe configuration.
+Block diagram attached for precise understanding.
+
+************************************* Socketcan Quickstart *******************************************************
 
 1: The CAN network driver provides a generic interface to setup, configure and monitor CAN devices. 
 
-2: The virtual CAN driver (vcan) --> The virtual CAN interfaces allow the transmission and reception of CAN frames without real CAN controller hardware. 
+2: The virtual CAN driver (vcan) --> The virtual CAN interfaces allow the transmission and reception 
+	of CAN frames without real CAN controller hardware. 
 
-3: Virtual CAN network devices are usually named ‘vcanX’, like vcan0 vcan1 vcan2.
+3: Virtual CAN network devices are usually named vcan0 vcan1 vcan2.
 
 4: To create a virtual can interface using socketcan run the following:
 
 >>> sudo modprobe vcan
 
->>> sudo ip link add dev vcan0 type vcan		# Create a vcan network interface with a specific name and enter password, if required.
+>>> sudo ip link add dev vcan0 type vcan	# Create a vcan network interface with a specific name 
 
 >>> sudo ip link set vcan0 up
 
->>> candump vcan0								# To receive the data
-
-
+>>> candump vcan0							# Allows you to print all data that is being received by a CAN interface
 
 

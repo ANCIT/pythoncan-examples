@@ -1,0 +1,69 @@
+/*@!Encoding:1252*//*@!Encoding:1252*/
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message CentralLockingSystemState LState;
+  message LockingRemoteControlRequest LReq;
+  message VehicleMotion VCE;
+  message WindowControl KE;
+  message WindowState WM;
+  msTimer T1;
+ }
+
+on start
+{
+  setTimer(T1,1000);        //Initilize Timer
+}
+
+on timer T1
+{
+  LState.AntiTheftSystemActive=1;    //Periodic Message Sample
+  output(LState);
+  setTimer(T1,1000);
+  
+}
+
+on key 'x'  //CRASH DETECTED
+{
+  write("CASE 1 : Crash Detected ==> with EngineOn and RequestToUnlock Door");
+  VCE.EngineRunning=1;
+  VCE.CrashDetected=1;
+  VCE.Velocity=100;
+  output(VCE);
+  LReq.LockRequest=0x2;   //Unlockrequest=0x2
+  output(LReq);
+}
+ 
+on key 'u'  //UnLock Door
+{
+  write("CASE 2 : Request DoorUnLock ==> RequestToUnlock Door");
+  LReq.LockRequest=0x2;
+  output(LReq);   //UnlockDoor Request
+}
+
+on key 'l'  //Request to close Window
+{
+  write("CASE 3 : Door Locked with Engine Velocity 20 and Request to Windows Closed");
+  LState.LockState=0x1;   //Door Closed = 0x1
+  VCE.Velocity=20;        //Velocity at 20
+  output(LState);
+  output(VCE);
+  KE.KeyUp=1;             //Request to close window
+  output(KE);
+}
+  
+on key 'c'  //Comfort Lock
+{
+  write("CASE 4 : Comfort Lock");
+  WM.WindowMotion=0x0;    //Window not moving
+  LReq.LockRequest=0x3;   //Comfort Lock
+  output(WM);
+  output(LReq);
+  LState.LockState=0x1;
+  output(LState);         //Door Locked
+}

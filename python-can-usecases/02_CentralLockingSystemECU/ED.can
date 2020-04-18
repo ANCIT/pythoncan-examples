@@ -30,7 +30,7 @@ on timer T1
 
 on key 'x'  //CRASH DETECTED
 {
-  write("CASE 1 : Crash Detected with EngineOn and RequestToUnlock Door");
+  write("CASE 1 : Crash Detected ==> with EngineOn and RequestToUnlock Door");
   VCE.EngineRunning=1;
   VCE.CrashDetected=1;
   VCE.Velocity=100;
@@ -41,7 +41,7 @@ on key 'x'  //CRASH DETECTED
  
 on key 'u'  //UnLock Door
 {
-  write("CASE 2 : Request DoorUnLock RequestToUnlock Door");
+  write("CASE 2 : Request DoorUnLock ==> RequestToUnlock Door");
   LReq.LockRequest=0x2;
   output(LReq);   //UnlockDoor Request
 }
