@@ -14,7 +14,7 @@ def _accelerate():
         can_bus.send(message)
         #print(" 0x20 Message sent on {}".format(can_bus.channel_info))
     except can.CanError:
-        print("Message NOT sent")
+        print("Message not sent")
 
 def _accelerate2():
    

@@ -26,22 +26,22 @@ def apply_break():
 	except can.CanError:
 		print("Message NOT sent")
 		
-def apply_accilerate1():
+def apply_accelerate1():
 	message = can.Message(arbitration_id=0x10, data=[10,1,0,0], is_extended_id=False)
 	try:
 		#can_bus.send(message)
 		periodicTask.modify_data(message)
-		print("Accileration : 10")
+		print("Acceleration : 10")
 		#print(" 0x10 Message sent on {}".format(can_bus.channel_info))
 	except can.CanError:
 		print("Message NOT sent")	
 
-def apply_accilerate2():
+def apply_accelerate2():
 	message = can.Message(arbitration_id=0x10, data=[20,1,0,0], is_extended_id=False)
 	try:
 		#can_bus.send(message)
 		periodicTask.modify_data(message)
-		print("Accileration : 20")
+		print("Acceleration : 20")
 		#print(" 0x10 Message sent on {}".format(can_bus.channel_info))
 	except can.CanError:
 		print("Message NOT sent")	
@@ -53,9 +53,9 @@ def on_Message():
 		data = response.data
 		if response.arbitration_id == 0x020:	
 			if response.data == bytearray(b'\n'):
-				apply_accilerate1()
+				apply_accelerate1()
 			if response.data == bytearray(b'\x14'):
-				apply_accilerate2()
+				apply_accelerate2()
 	
 		if response.arbitration_id == 0x030:
 			apply_break()
