@@ -28,4 +28,7 @@ Block diagram attached for precise understanding.
 
 >>> candump vcan0							# Allows you to print all data that is being received by a CAN interface
 
+>>> candump vcan0 | cantools decode --single-line .dbc file path
+
+
 
