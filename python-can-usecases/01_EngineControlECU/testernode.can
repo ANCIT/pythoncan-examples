@@ -1,0 +1,38 @@
+/*@!Encoding:1252*/
+
+includes
+{
+  
+}
+variables
+{
+message 0x20 m2;
+message 0x30 m3;
+}
+on key 'b'
+{
+m2.dlc=4;
+m2.byte(0)=0x10;
+m2.byte(1)=0x01; 
+m2.byte(2)=0x00;
+m2.byte(3)=0x00;
+output(m2);
+}
+on key 'c'
+{
+m2.dlc=4;
+m2.byte(0)=0x20;
+m2.byte(1)=0x01;
+m2.byte(2)=0x00;
+m2.byte(3)=0x00;
+output(m2);
+}
+on key 'd'
+{
+m3.dlc=4;
+m3.byte(0)=0x00;
+m3.byte(1)=0x01;
+m3.byte(2)=0x00;
+m3.byte(3)=0x00;
+output(m3);
+}

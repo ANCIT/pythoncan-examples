@@ -1,0 +1,60 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+variables 
+{
+  message 0x10 m1 ;
+  message 0x20 m2;
+  message 0x30 m3;
+  msTimer ms1;
+}
+on message 0x20
+  {
+    if(m2.byte(0)==0x10)
+    {
+  m1.dlc=4;
+  m1.byte(0)=0x10;
+  m1.byte(1)=0x01;
+  output(m1);
+    }
+   if(m2.byte(0)==0x20)
+    {
+     m1.dlc=4;
+  m1.byte(0)=0x20;
+  m1.byte(1)=0x01;
+  output(m1);
+     }
+}
+ on message 0x30
+  {
+    if(m3.byte(0)==0x00)
+    {
+  m1.dlc=4;
+ m1.byte(0)=0x00;
+ m1.byte(1)=0x01;
+  output(m1);
+     }
+}
+on start
+{
+setTimer(ms1,100);// initialize timer to 100 msec
+ m1.dlc=4;
+  m1.byte(0)=0;
+  m1.byte(1)=0;
+  m1.byte(2)=0;
+  m1.byte(3)=0;
+  output(m1);
+} 
+  on timer ms1
+  {
+  setTimer(ms1,100);
+  m1.dlc=4;
+  m1.byte(0)=0;
+  m1.byte(1)=1;
+  m1.byte(2)=0;
+  m1.byte(3)=0;
+  output(m1);
+}
+ 
