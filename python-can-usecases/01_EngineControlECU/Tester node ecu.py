@@ -34,7 +34,7 @@ def _break():
         can_bus.send(message)
         #print(" 0x30 Message sent on {}".format(can_bus.channel_info))
     except can.CanError:
-        print("Message NOT sent")
+        print("Message not sent")
 
 
 def on_press(key):

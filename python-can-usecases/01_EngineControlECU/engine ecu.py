@@ -24,7 +24,7 @@ def apply_break():
 		print("Break Applied")
 		#print(" 0x10 Message sent on {}".format(can_bus.channel_info))
 	except can.CanError:
-		print("Message NOT sent")
+		print("Message not sent")
 		
 def apply_accelerate1():
 	message = can.Message(arbitration_id=0x10, data=[10,1,0,0], is_extended_id=False)
