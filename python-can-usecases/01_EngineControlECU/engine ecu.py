@@ -64,7 +64,7 @@ def intiateVehicle():
 	message = can.Message(arbitration_id=0x10, data=[0,0,0,0], is_extended_id=False)
 	try:
 		task = can_bus.send_periodic(message, 1.0)
-		print("Vehicle Initiated")
+		print("Cranking engine & Vehicle Initiated")
 		return task
 		#print(" 0x10 Message sent on {}".format(can_bus.channel_info))
 	except can.CanError:
