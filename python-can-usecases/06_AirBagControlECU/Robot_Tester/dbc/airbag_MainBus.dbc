@@ -1,0 +1,22 @@
+VERSION ""
+
+
+NS_ : 
+
+BS_:
+
+BU_: airbagECU airbag
+
+
+BO_ 1 SeatbeltSystem: 1 airbagECU
+ SG_ SeatbeltState : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 0 AirbagSystem: 2 airbagECU
+ SG_ airbagState : 0|2@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ AirbagCondition : 2|1@1+ (1,0) [0|1] ""  Vector__XXX
+
+BO_ 50 VehicleMotion: 3 airbagECU
+ SG_ EngineRunning : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ CrashDetected : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Velocity : 0|16@1- (0.1,0) [-100|350] "km/h" Vector__XXX
+

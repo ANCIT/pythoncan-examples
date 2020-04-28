@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.0 on linux)" generated="20200427 11:46:39.241" rpa="false">
+<suite id="s1" name="tester Airbag usecase" source="/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/tester_Airbag_usecase.robot">
+<test id="s1-t1" name="Send a Seatbelt Un-lock Signal">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.522" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.522" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.530" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Send a Seatbelt Un-lock Signal_20200427_114639", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:39.521" endtime="20200427 11:46:39.532"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.520" endtime="20200427 11:46:39.532"></status>
+</kw>
+<kw name="Send Signal SeatbeltState With Value 0" library="curf">
+<kw name="Send Signal" library="Curf">
+<doc>Send a CAN signal from Database
+Keyword arguments:
+signal_name -- Name of the signal to send
+value -- Value of the signal to send</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${VALUE}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.536" level="INFO">Timestamp:        0.000000    ID: 00000001    X                DLC:  1    00</msg>
+<status status="PASS" starttime="20200427 11:46:39.534" endtime="20200427 11:46:39.536"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.533" endtime="20200427 11:46:39.536"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:39.537" endtime="20200427 11:46:39.537"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.536" endtime="20200427 11:46:39.537"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.519" endtime="20200427 11:46:39.537" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Check the reception of Airbag Inactive Status">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.540" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.542" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.544" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Check the reception of Airbag Inactive Status_20200427_114639", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:39.539" endtime="20200427 11:46:39.545"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.539" endtime="20200427 11:46:39.545"></status>
+</kw>
+<kw name="Check CAN Signal airbagState Equals To 1 TimeOut ${DEFAULT TIMEOUT} Seconds" library="curf">
+<kw name="Check Signal" library="Curf">
+<doc>Check the reception of give signal
+with the given time out value
+Keyword arguments:
+signal_name -- signal expected name to be received
+expect_value -- signal expected value to be received
+time_out -- timeout value in second for the reception
+node_name -- Node ID (optional)</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${SIGNAL VALUE}</arg>
+<arg>${TIME OUT}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.724" level="INFO">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20200427 11:46:39.546" endtime="20200427 11:46:39.725"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.545" endtime="20200427 11:46:39.726"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:39.728" endtime="20200427 11:46:39.728"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.727" endtime="20200427 11:46:39.729"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.538" endtime="20200427 11:46:39.729" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Send a Engine Run Signal">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.731" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.732" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.736" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Send a Engine Run Signal_20200427_114639", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:39.730" endtime="20200427 11:46:39.737"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.730" endtime="20200427 11:46:39.738"></status>
+</kw>
+<kw name="Send Signal EngineRunning With Value 1" library="curf">
+<kw name="Send Signal" library="Curf">
+<doc>Send a CAN signal from Database
+Keyword arguments:
+signal_name -- Name of the signal to send
+value -- Value of the signal to send</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${VALUE}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.742" level="INFO">Timestamp:        0.000000    ID: 00000032    X                DLC:  3    00 00 02</msg>
+<status status="PASS" starttime="20200427 11:46:39.739" endtime="20200427 11:46:39.743"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.738" endtime="20200427 11:46:39.743"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:39.744" endtime="20200427 11:46:39.744"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.743" endtime="20200427 11:46:39.744"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.729" endtime="20200427 11:46:39.744" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Send a Seatbelt Lock Signal">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.747" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.748" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.752" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Send a Seatbelt Lock Signal_20200427_114639", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:39.746" endtime="20200427 11:46:39.753"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.746" endtime="20200427 11:46:39.753"></status>
+</kw>
+<kw name="Send Signal SeatbeltState With Value 1" library="curf">
+<kw name="Send Signal" library="Curf">
+<doc>Send a CAN signal from Database
+Keyword arguments:
+signal_name -- Name of the signal to send
+value -- Value of the signal to send</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${VALUE}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.761" level="INFO">Timestamp:        0.000000    ID: 00000001    X                DLC:  1    01</msg>
+<status status="PASS" starttime="20200427 11:46:39.754" endtime="20200427 11:46:39.761"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.754" endtime="20200427 11:46:39.761"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:39.762" endtime="20200427 11:46:39.762"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.761" endtime="20200427 11:46:39.762"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.745" endtime="20200427 11:46:39.762" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Check the reception of Airbag Idle Status">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:39.764" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.765" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:39.770" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Check the reception of Airbag Idle Status_20200427_114639", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:39.764" endtime="20200427 11:46:39.771"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.763" endtime="20200427 11:46:39.771"></status>
+</kw>
+<kw name="Check CAN Signal airbagState Equals To 0 TimeOut ${DEFAULT TIMEOUT} Seconds" library="curf">
+<kw name="Check Signal" library="Curf">
+<doc>Check the reception of give signal
+with the given time out value
+Keyword arguments:
+signal_name -- signal expected name to be received
+expect_value -- signal expected value to be received
+time_out -- timeout value in second for the reception
+node_name -- Node ID (optional)</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${SIGNAL VALUE}</arg>
+<arg>${TIME OUT}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:40.723" level="INFO">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20200427 11:46:39.774" endtime="20200427 11:46:40.724"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.772" endtime="20200427 11:46:40.724"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:40.727" endtime="20200427 11:46:40.727"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.726" endtime="20200427 11:46:40.727"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:39.763" endtime="20200427 11:46:40.727" critical="yes"></status>
+</test>
+<test id="s1-t6" name="Send a Crash Detected with Engine Run CAN frame">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:40.730" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:40.731" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:40.735" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Send a Crash Detected with Engine Run CAN frame_20200427_114640", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:40.729" endtime="20200427 11:46:40.736"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.729" endtime="20200427 11:46:40.736"></status>
+</kw>
+<kw name="Send Frame With ID 32 And 000003 As Data" library="curf">
+<kw name="Send Frame" library="Curf">
+<doc>Send a CAN frame
+Keyword arguments:
+frame_id -- ID to send
+frame_data -- Data to send</doc>
+<arguments>
+<arg>${FRAME ID}</arg>
+<arg>${FRAME DATA}</arg>
+</arguments>
+<status status="PASS" starttime="20200427 11:46:40.737" endtime="20200427 11:46:40.738"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.736" endtime="20200427 11:46:40.738"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:40.739" endtime="20200427 11:46:40.742"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.739" endtime="20200427 11:46:40.742"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.728" endtime="20200427 11:46:40.745" critical="yes"></status>
+</test>
+<test id="s1-t7" name="Check the reception of Airbag Active Status">
+<kw name="Set CAN Bus socketcan vcan0 250000 /home/manz/eclipse-workspace/AirbagTestNode_Robot/dbc/airbag_MainBus.dbc" library="curf" type="setup">
+<kw name="Set Can" library="Curf">
+<doc>Set the CAN BUS
+Keyword arguments:
+interface -- can interface (socketcan, vector, ...)
+channel -- can channel (can0, vcan0, ...)
+bitrate -- can bitrate (125000, 500000, ...)
+db -- can database (arxml,dbc,kcd,sym,cdd)
+test_name -- Name of test case</doc>
+<arguments>
+<arg>${INTERFACE}</arg>
+<arg>${CHANNEL}</arg>
+<arg>${BITRATE}</arg>
+<arg>${DB FILE}</arg>
+<arg>${TEST NAME}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:40.750" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:40.752" level="INFO">Created a socket</msg>
+<msg timestamp="20200427 11:46:40.759" level="INFO">unknown file type "/home/manz/eclipse-workspace/AirbagTestNode_Robot/testsuite/outputs/20200427/Check the reception of Airbag Active Status_20200427_114640", falling pack to can.Printer</msg>
+<status status="PASS" starttime="20200427 11:46:40.749" endtime="20200427 11:46:40.760"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.748" endtime="20200427 11:46:40.761"></status>
+</kw>
+<kw name="Check CAN Signal airbagState Equals To 2 TimeOut ${DEFAULT TIMEOUT} Seconds" library="curf">
+<kw name="Check Signal" library="Curf">
+<doc>Check the reception of give signal
+with the given time out value
+Keyword arguments:
+signal_name -- signal expected name to be received
+expect_value -- signal expected value to be received
+time_out -- timeout value in second for the reception
+node_name -- Node ID (optional)</doc>
+<arguments>
+<arg>${SIGNAL NAME}</arg>
+<arg>${SIGNAL VALUE}</arg>
+<arg>${TIME OUT}</arg>
+</arguments>
+<msg timestamp="20200427 11:46:41.725" level="INFO">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20200427 11:46:40.763" endtime="20200427 11:46:41.725"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.762" endtime="20200427 11:46:41.725"></status>
+</kw>
+<kw name="End Log Can" library="curf" type="teardown">
+<kw name="End Can" library="Curf">
+<doc>Stop the CAN BUS</doc>
+<status status="PASS" starttime="20200427 11:46:41.729" endtime="20200427 11:46:41.730"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:41.726" endtime="20200427 11:46:41.730"></status>
+</kw>
+<status status="PASS" starttime="20200427 11:46:40.746" endtime="20200427 11:46:41.730" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200427 11:46:39.242" endtime="20200427 11:46:41.731"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0">Critical Tests</stat>
+<stat pass="7" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="7" fail="0" id="s1" name="tester Airbag usecase">tester Airbag usecase</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
