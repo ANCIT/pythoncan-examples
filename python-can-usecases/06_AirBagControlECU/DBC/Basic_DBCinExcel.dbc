@@ -1,0 +1,55 @@
+VERSION "created by canmatrix"
+
+
+NS_ :
+
+BS_:
+
+BU_: 
+
+
+BO_ 257 SeatbeltMsg: 8 Vector__XXX
+ SG_ SeatbeltStatus : 7|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 258 AirbagMsg: 8 Vector__XXX
+ SG_ AirbagStatus : 6|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ AirbagCondition : 4|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 260 VehicleMotion: 8 Vector__XXX
+ SG_ CrashDetected : 3|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EngineRunning : 2|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ Velocity : 15|16@0+ (0.1,0) [0|65535] "km/h" Vector__XXX
+
+BO_ 261 BrakeMsg: 8 Vector__XXX
+ SG_ BrakeStatus : 1|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 262 AccelarationMsg: 8 Vector__XXX
+ SG_ Acceleration : 31|16@0+ (0.1,0) [0|65535] "m/s2" Vector__XXX
+
+
+
+CM_ SG_ 257 SeatbeltStatus "Status of wether Seatbelt is worn or not";
+CM_ SG_ 258 AirbagStatus "Echos the state of the Airbag Condition";
+CM_ SG_ 258 AirbagCondition "state of the Airbag Health";
+CM_ SG_ 260 CrashDetected "Status of wether crash is detected or not";
+CM_ SG_ 260 EngineRunning "Echos Engine Running Status";
+CM_ SG_ 260 Velocity "Value of the Vehicles Velocity";
+CM_ SG_ 261 BrakeStatus "Status of wether Brake is applied or not";
+CM_ SG_ 262 Acceleration "Value of the Acceleration Applaid";
+
+
+BA_DEF_ BO_ "GenMsgCycleTimeActive" INT 0 65535;
+BA_DEF_ BO_ "GenMsgDelayTime" INT 0 65535;
+BA_DEF_ BO_ "GenMsgNrOfRepetitions" INT 0 65535;
+BA_DEF_ BO_ "GenMsgSendType" ENUM;
+BA_DEF_ SG_ "GenSigSNA" STRING;
+
+
+
+
+VAL_ 257 SeatbeltStatus 0 "Worn" 1 "NotWorn";
+VAL_ 258 AirbagStatus 0 "Ready" 1 "NotReady" 2 "Released";
+VAL_ 258 AirbagCondition 0 "Healthy" 1 "Damage";
+VAL_ 260 CrashDetected 0 "Crash" 1 "CrashFree";
+VAL_ 260 EngineRunning 0 "NotRunning" 1 "Running";
+VAL_ 261 BrakeStatus 0 "BrakeApplied" 1 "NotWorn";

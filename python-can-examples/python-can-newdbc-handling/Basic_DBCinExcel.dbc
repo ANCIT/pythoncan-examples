@@ -12,19 +12,19 @@ BO_ 257 SeatbeltMsg: 8 Vector__XXX
  SG_ SeatbeltStatus : 7|1@0+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 258 AirbagMsg: 8 Vector__XXX
- SG_ AirbagStatus : 7|2@0+ (1,0) [0|3] "" Vector__XXX
- SG_ AirbagCondition : 5|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ AirbagStatus : 6|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ AirbagCondition : 4|1@0+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 260 VehicleMotion: 8 Vector__XXX
- SG_ CrashDetected : 7|1@0+ (1,0) [0|1] "" Vector__XXX
- SG_ EngineRunning : 6|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CrashDetected : 3|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EngineRunning : 2|1@0+ (1,0) [0|1] "" Vector__XXX
  SG_ Velocity : 15|16@0+ (0.1,0) [0|65535] "km/h" Vector__XXX
 
 BO_ 261 BrakeMsg: 8 Vector__XXX
- SG_ BrakeStatus : 7|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ BrakeStatus : 1|1@0+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 262 AccelarationMsg: 8 Vector__XXX
- SG_ Acceleration : 7|16@0+ (0.1,0) [0|65535] "m/s2" Vector__XXX
+ SG_ Acceleration : 31|16@0+ (0.1,0) [0|65535] "m/s2" Vector__XXX
 
 
 
