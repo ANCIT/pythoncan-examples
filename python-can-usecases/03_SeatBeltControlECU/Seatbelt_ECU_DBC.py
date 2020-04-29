@@ -15,8 +15,6 @@ seatbeltReqMsg = db.get_message_by_name('SeatbeltReqMsg')
 while True:
     message = bus.recv()
     msgData = db.decode_message(message.arbitration_id, message.data)
-    print(seatbeltReqMsg.frame_id)
-    print(message.arbitration_id)
     if message.arbitration_id == seatbeltReqMsg.frame_id:
         print("Req Recieved")
         seatbeltReq = (msgData['SeatbeltReq'])
