@@ -5,12 +5,28 @@ Created on 15-Apr-2020
 '''
 import can
 bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate=250000)
+
+seatbeltMsgID = 0x101
+seatbeltReqMsgID = 0x107
+
 while True:
-        message = bus.recv()
-        data = message.data
-        if message.arbitration_id == 0x011 and data == bytearray(b'\x00\x01'):
-            print('Activate Seatbelt')
-            
-        if message.arbitration_id == 0x022 and data==bytearray(b'\x00\x00'):
-            print('Release SeatBelt')
+    message = bus.recv()
+    msgData = message.data
+    if message.arbitration_id == seatbeltReqMsgID: 
+        
+        if (msgData[0] == 0x01):
+            msg = can.Message(arbitration_id=seatbeltMsgID,data=[1, 0],is_extended_id=False)
+            try:
+                bus.send(msg)
+                print('Seat Belt Locked')
+            except can.CanError:
+                print("Message NOT sent")
+        
+        if (msgData[0] == 0x00):
+            msg = can.Message(arbitration_id=seatbeltMsgID,data=[0, 0],is_extended_id=False)
+            try:
+                bus.send(msg)
+                print('Seat Belt Locked')
+            except can.CanError:
+                print("Message NOT sent")
 
