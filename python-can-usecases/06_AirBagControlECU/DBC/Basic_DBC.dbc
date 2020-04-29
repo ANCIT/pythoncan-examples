@@ -47,9 +47,9 @@ BA_DEF_ SG_ "GenSigSNA" STRING;
 
 
 
-VAL_ 257 SeatbeltStatus 0 "Worn" 1 "NotWorn";
+VAL_ 257 SeatbeltStatus 0 "NotWorn" 1 "Worn";
 VAL_ 258 AirbagStatus 0 "Ready" 1 "NotReady" 2 "Released";
-VAL_ 258 AirbagCondition 0 "Healthy" 1 "Damage";
-VAL_ 260 CrashDetected 0 "Crash" 1 "CrashFree";
+VAL_ 258 AirbagCondition 0 "Damage" 1 "Healthy";
+VAL_ 260 CrashDetected 0 "CrashFree" 1 "Crash";
 VAL_ 260 EngineRunning 0 "NotRunning" 1 "Running";
-VAL_ 261 BrakeStatus 0 "BrakeApplied" 1 "NotWorn";
+VAL_ 261 BrakeStatus 0 "BrakeNotApplied" 1 "BrakeApplied";

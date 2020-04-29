@@ -1,24 +1,21 @@
-#Date : Wed Apr 16 2020
+#Date : Wed Apr 29 2020
 #Author : Manzoor A
 #Script to Test Airbag ECU Simulation
 
-from __future__ import print_function
 import can
-import cantools
 import threading
 from pynput import keyboard
 
-db = cantools.db.load_file('DBC/Basic_DBC.dbc')
 can_bus = can.interface.Bus(bustype='socketcan',channel='vcan0',bitrate=250000)
- 
-VehicleMotionMsg = db.get_message_by_name('VehicleMotion')
-SeatbeltSystemMsg = db.get_message_by_name('SeatbeltMsg')
-airbagSystemMsg = db.get_message_by_name('AirbagMsg')
+
+seatbeltMsgID = 0x101
+airbagMsgID = 0x102
+VehicleMotionMsgID = 0x104
 
 def _SeatbeltUnock():
     # Send Seatbelt Unlock Message
-    data = SeatbeltSystemMsg.encode({'SeatbeltStatus':0})
-    message = can.Message(arbitration_id=SeatbeltSystemMsg.frame_id, data=data, is_extended_id=False)
+    data = [0x00, 0, 0, 0, 0, 0, 0, 0]
+    message = can.Message(arbitration_id=seatbeltMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
         print(" Seatbelt Unlocked")
@@ -27,8 +24,8 @@ def _SeatbeltUnock():
  
 def _SeatbeltLock():
     # Send Seatbelt Lock Message
-    data = SeatbeltSystemMsg.encode({'SeatbeltStatus':1})
-    message = can.Message(arbitration_id=SeatbeltSystemMsg.frame_id, data=data, is_extended_id=False)
+    data = [0x80, 0, 0, 0, 0, 0, 0, 0]
+    message = can.Message(arbitration_id=seatbeltMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
         print(" Seatbelt Locked")
@@ -37,8 +34,8 @@ def _SeatbeltLock():
          
 def _crashDetected():
     # Send Crash Detected Message
-    data = VehicleMotionMsg.encode({'Velocity':10,'CrashDetected':1,'EngineRunning':1})
-    message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
+    data = [0x0C, 0, 0x64, 0, 0, 0, 0, 0]
+    message = can.Message(arbitration_id=VehicleMotionMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
         print(" Crash with Engine ON")
@@ -47,8 +44,8 @@ def _crashDetected():
  
 def _crashFree():
     # Send Crash Detected Message
-    data = VehicleMotionMsg.encode({'Velocity':10,'CrashDetected':0,'EngineRunning':1})
-    message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
+    data = [0x04, 0, 0x64, 0, 0, 0, 0, 0]
+    message = can.Message(arbitration_id=VehicleMotionMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
         print(" No Crash with Engine ON")
@@ -57,8 +54,8 @@ def _crashFree():
 
 def _engineOffCrash():
     # Send Engine off and Crash Detected Message
-    data = VehicleMotionMsg.encode({'Velocity':0,'CrashDetected':1,'EngineRunning':0})
-    message = can.Message(arbitration_id=VehicleMotionMsg.frame_id, data=data, is_extended_id=False)
+    data = [0x08, 0, 0x00, 0, 0, 0, 0, 0]
+    message = can.Message(arbitration_id=VehicleMotionMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
         print(" Crash with Engine Off")
@@ -92,18 +89,16 @@ def on_Key():
 def on_Message():
     while True:
         response = can_bus.recv()
-        msgData = db.decode_message(response.arbitration_id, response.data)
-        if response.arbitration_id == airbagSystemMsg.frame_id:
-            airbagState = (msgData['AirbagStatus'])
-            if (airbagState == 'Ready'):
-                # Trigger Idle Airbag
-                print("\t\t\tAirbag is Ready")
-            if (airbagState == 'NotReady'):
-                #Trigger Inactive Airbag
+        if response.arbitration_id == airbagMsgID:
+            airbagNotReady = (bool(response.data[0] & (1<<5)))  #6th Bit of 0th Byte
+            airbagReleased = (bool(response.data[0] & (1<<6)))  #7th Bit of 0th Byte
+            
+            if (airbagNotReady):
                 print("\t\t\tAirbag is Not Ready")
-            if (airbagState == 'Released'):
-                # Trigger Release Airbag
-                print("\t\t\tAirbag Released")    
+            elif (airbagReleased):
+                print("\t\t\tAirbag Released")
+            elif (airbagNotReady is not True):
+                print("\t\t\tAirbag is Ready")   
                 
 def instruction():
     print("Simulation Keys:\n\
