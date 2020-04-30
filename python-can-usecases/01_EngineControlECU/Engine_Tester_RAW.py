@@ -12,7 +12,7 @@ AcclrVal = 0
 
 def _accelerate():
     global AcclrVal
-    AcclrVal = AcclrVal+2
+    AcclrVal = AcclrVal+10
     
     message = can.Message(arbitration_id=accelerationMsgID,data=[AcclrVal, 0],is_extended_id=False)
     try:
@@ -23,7 +23,7 @@ def _accelerate():
 
 def _decelerate():
     global AcclrVal
-    AcclrVal = AcclrVal-2
+    AcclrVal = AcclrVal-10
     
     message = can.Message(arbitration_id=accelerationMsgID,data=[AcclrVal, 0],is_extended_id=False)
     try:

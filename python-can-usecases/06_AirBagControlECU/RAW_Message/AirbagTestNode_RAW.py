@@ -24,7 +24,7 @@ def _SeatbeltUnock():
  
 def _SeatbeltLock():
     # Send Seatbelt Lock Message
-    data = [0x80, 0, 0, 0, 0, 0, 0, 0]
+    data = [0x01, 0, 0, 0, 0, 0, 0, 0]
     message = can.Message(arbitration_id=seatbeltMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
@@ -34,7 +34,7 @@ def _SeatbeltLock():
          
 def _crashDetected():
     # Send Crash Detected Message
-    data = [0x0C, 0, 0x64, 0, 0, 0, 0, 0]
+    data = [0x03, 0, 0x64, 0, 0, 0, 0, 0]
     message = can.Message(arbitration_id=VehicleMotionMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
@@ -44,7 +44,7 @@ def _crashDetected():
  
 def _crashFree():
     # Send Crash Detected Message
-    data = [0x04, 0, 0x64, 0, 0, 0, 0, 0]
+    data = [0x02, 0, 0x64, 0, 0, 0, 0, 0]
     message = can.Message(arbitration_id=VehicleMotionMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
@@ -54,7 +54,7 @@ def _crashFree():
 
 def _engineOffCrash():
     # Send Engine off and Crash Detected Message
-    data = [0x08, 0, 0x00, 0, 0, 0, 0, 0]
+    data = [0x01, 0, 0x00, 0, 0, 0, 0, 0]
     message = can.Message(arbitration_id=VehicleMotionMsgID, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
@@ -90,14 +90,23 @@ def on_Message():
     while True:
         response = can_bus.recv()
         if response.arbitration_id == airbagMsgID:
-            airbagNotReady = (bool(response.data[0] & (1<<5)))  #6th Bit of 0th Byte
-            airbagReleased = (bool(response.data[0] & (1<<6)))  #7th Bit of 0th Byte
+            airbagNotReady = bool(response.data[0] & 1)         #0th Bit of 0th Byte
+            airbagReleased = bool(response.data[0] & (1<<1))    #1st Bit of 0th Byte
             
-            if (airbagNotReady):
-                print("\t\t\tAirbag is Not Ready")
-            elif (airbagReleased):
+            #   (airbagReleased):    0000 0010
+            #             (1<<1):    0000 0010
+            #                        0000 0010
+                      
+            if (airbagReleased):
+            #if(response.data[0] == 0x02):
                 print("\t\t\tAirbag Released")
+                
+            elif(airbagNotReady):                        
+            #elif(response.data[0] == 0x01):
+                print("\t\t\tAirbag is Not Ready")
+                
             elif (airbagNotReady is not True):
+            #elif(response.data[0] == 0x00):
                 print("\t\t\tAirbag is Ready")   
                 
 def instruction():

@@ -8,47 +8,45 @@ import can
 from pynput import keyboard
 import threading
 
-seatbeltMsgID = 0x101
-ReqSeatbeltMsgID = 0x107
-
 bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate=250000)
+
+seatbeltMsgID = 0x101
+brakeMsgID = 0x105
+accelerationMsgID = 0x106
 
 def on_press(key):
     try:
-        if key.char == 'a': # for brake condition
-            msg = can.Message(arbitration_id=ReqSeatbeltMsgID,data=[1, 0],is_extended_id=False)
+        if key.char == 'a': # for acceleration
+            message = can.Message(arbitration_id=accelerationMsgID,data=[0, 0],is_extended_id=False)
             try:
-                bus.send(msg)
-                print("Message sent: \tTrigger Seatbelt Lock")
+                bus.send(message)
+                print("Message sent: \tVehicle Stopped Moving")
             except can.CanError:
                 print("Message NOT sent")
-        
-        if key.char == 'b': # for acceleration
-            msg = can.Message(arbitration_id=ReqSeatbeltMsgID,data=[0, 0],is_extended_id=False)
+        if key.char == 'b': # for brake condition
+            message = can.Message(arbitration_id=brakeMsgID,data=[1, 0],is_extended_id=False)
             try:
-                bus.send(msg)
-                print("Message sent: \tTrigger Seatbelt Un-lock")
+                bus.send(message)
+                print("Message sent: \tSudden Break Applaid")
             except can.CanError:
                 print("Message NOT sent")
     except AttributeError:
         pass
  
 def on_Key():
-#     with keyboard.Listener(on_press=on_press) as listener:
-#         listener.join()
     keyboard.Listener(on_press=on_press).start()
 
 def on_Message():
     while True:
         response = bus.recv()
         msgData = response.data
-        if response.arbitration_id == seatbeltMsgID:       #from Seatbelt Message
-            if (msgData[0] == 0x01):
+        if response.arbitration_id == seatbeltMsgID:    # from Seatbelt Message
+            seatbeltLock = msgData[0] & (1<<1)          # 1st bit of 0th Byte
+            if (seatbeltLock):
                 #if Seatbelt is Locked
                 print("\tResponse: Seatbelt Locked")
-            
-            if (msgData[0] == 0x00):
-                #if Seatbelt is Locked
+            else:
+                #if Seatbelt is Not Locked
                 print("\tResponse: Seatbelt Un-locked")
 
 if __name__ == '__main__':

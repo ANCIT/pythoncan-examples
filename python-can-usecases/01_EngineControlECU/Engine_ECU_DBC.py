@@ -19,11 +19,11 @@ def apply_break():
 		print("Message not sent")
 		
 def apply_accelerate(AcclVal):
-	data = EngineMsg.encode({'Velocity': (AcclVal*10),'CrashDetected':0,'EngineRunning':1})
+	data = EngineMsg.encode({'Velocity': (AcclVal),'CrashDetected':0,'EngineRunning':1})
 	message = can.Message(arbitration_id=EngineMsg.frame_id, data=data, is_extended_id=False)
 	try:
 		periodicTask.modify_data(message)
-		print("Acceleration : " + str(AcclVal*10))
+		print("Acceleration : " + str(AcclVal))
 	except can.CanError:
 		print("Message NOT sent")	
 

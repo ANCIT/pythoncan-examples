@@ -14,7 +14,7 @@ AcclrVal = 0
 
 def _accelerate():
     global AcclrVal
-    AcclrVal = AcclrVal+2
+    AcclrVal = AcclrVal+10
     
     data = accelerationMsg.encode({'Acceleration':AcclrVal})
     message = can.Message(arbitration_id=accelerationMsg.frame_id, data=data, is_extended_id=False)
@@ -26,7 +26,7 @@ def _accelerate():
 
 def _decelerate():
     global AcclrVal
-    AcclrVal = AcclrVal-2
+    AcclrVal = AcclrVal-10
     
     data = accelerationMsg.encode({'Acceleration':AcclrVal})
     message = can.Message(arbitration_id=accelerationMsg.frame_id, data=data, is_extended_id=False)

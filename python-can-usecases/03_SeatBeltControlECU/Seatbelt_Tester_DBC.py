@@ -13,25 +13,26 @@ bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate=250000)
 db = cantools.db.load_file('Basic_DBC.dbc')
 
 seatbeltMsg = db.get_message_by_name('SeatbeltMsg')
-seatbeltReqMsg = db.get_message_by_name('SeatbeltReqMsg')
+brakeMsg = db.get_message_by_name('BrakeMsg')
+accelerationMsg = db.get_message_by_name('AccelarationMsg')
 
 def on_press(key):
     try:
-        if key.char == 'a': # for unlock
-            data = seatbeltReqMsg.encode({'SeatbeltReq':1})
-            message = can.Message(arbitration_id=seatbeltReqMsg.frame_id, data=data, is_extended_id=False)
+        if key.char == 'a': # for Acceleration
+            data = accelerationMsg.encode({'Acceleration':0})
+            message = can.Message(arbitration_id=accelerationMsg.frame_id, data=data, is_extended_id=False)
             try:
                 bus.send(message)
-                print("Message sent: \tTrigger Seatbelt Lock")
+                print("Message sent: \tVehicle Stopped Moving")
             except can.CanError:
                 print("Message NOT sent")
         
         if key.char == 'b': # for lock
-            data = seatbeltReqMsg.encode({'SeatbeltReq':0})
-            message = can.Message(arbitration_id=seatbeltReqMsg.frame_id, data=data, is_extended_id=False)
+            data = brakeMsg.encode({'BrakeStatus':1})
+            message = can.Message(arbitration_id=brakeMsg.frame_id, data=data, is_extended_id=False)
             try:
                 bus.send(message)
-                print("Message sent: \tTrigger Seatbelt Un-Lock")
+                print("Message sent: \tSudden Break Applaid")
             except can.CanError:
                 print("Message NOT sent")
                 
@@ -48,11 +49,11 @@ def on_Message():
         message = bus.recv()
         msgData = db.decode_message(message.arbitration_id, message.data)
         if message.arbitration_id == seatbeltMsg.frame_id:
-            seatbeltStatus = (msgData['SeatbeltStatus'])
-            if (seatbeltStatus == 'NotWorn'):
+            seatbeltStatus = (msgData['SeatbeltLock'])
+            if (seatbeltStatus == 'UnLock'):
                     #if Seatbelt is not Locked
                     print("\tResponse: Seatbelt Un-Locked")
-            if (seatbeltStatus == 'Worn'):
+            if (seatbeltStatus == 'Lock'):
                     #if Seatbelt is Locked
                     print("\tResponse: Seatbelt Locked")
 

@@ -8,7 +8,7 @@ accelerationMsgID = 0x106
 EngineMsgID = 0x104
 
 def apply_break():
-	message = can.Message(arbitration_id=EngineMsgID, data=[1,0,0,0], is_extended_id=False)
+	message = can.Message(arbitration_id=EngineMsgID, data=[2,0,0,0], is_extended_id=False)
 	try:
 		periodicTask.modify_data(message)
 		print("Break Applied")
@@ -16,10 +16,10 @@ def apply_break():
 		print("Message not sent")
 		
 def apply_accelerate(AcclrVal):
-	message = can.Message(arbitration_id=EngineMsgID, data=[1,AcclrVal*10,0,0], is_extended_id=False)
+	message = can.Message(arbitration_id=EngineMsgID, data=[2,AcclrVal,0,0], is_extended_id=False)
 	try:
 		periodicTask.modify_data(message)
-		print("Acceleration : " + str(AcclrVal*10))
+		print("Acceleration : " + str(AcclrVal))
 	except can.CanError:
 		print("Message NOT sent")	
 
@@ -29,14 +29,14 @@ def on_Message():
 		message = can_bus.recv()
 		msgData = message.data
 		if message.arbitration_id == accelerationMsgID: 
-			acclrValue = msgData[0]
-			apply_accelerate(acclrValue)
+			AcclrVal = msgData[0]
+			apply_accelerate(AcclrVal)
 
 		if message.arbitration_id == brakeMsgID:
 			apply_break()
 			
 def intiateVehicle():
-	message = can.Message(arbitration_id=EngineMsgID, data=[1,5,0,0], is_extended_id=False)
+	message = can.Message(arbitration_id=EngineMsgID, data=[2,5,0,0], is_extended_id=False)
 	try:
 		task = can_bus.send_periodic(message, 1.0)
 		print("Cranking engine & Vehicle Initiated")
@@ -45,7 +45,6 @@ def intiateVehicle():
 		print("Message NOT sent")
 
 if __name__ == '__main__':
-	
 	periodicTask = intiateVehicle()
 	threading.Thread(on_Message()).start()
 	

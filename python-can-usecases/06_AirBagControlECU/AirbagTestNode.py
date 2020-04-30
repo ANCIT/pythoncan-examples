@@ -17,7 +17,7 @@ airbagSystemMsg = db.get_message_by_name('AirbagMsg')
 
 def _SeatbeltUnock():
     # Send Seatbelt Unlock Message
-    data = SeatbeltSystemMsg.encode({'SeatbeltStatus':0})
+    data = SeatbeltSystemMsg.encode({'SeatbeltStatus':0,'SeatbeltLock':0})
     message = can.Message(arbitration_id=SeatbeltSystemMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
@@ -27,7 +27,7 @@ def _SeatbeltUnock():
  
 def _SeatbeltLock():
     # Send Seatbelt Lock Message
-    data = SeatbeltSystemMsg.encode({'SeatbeltStatus':1})
+    data = SeatbeltSystemMsg.encode({'SeatbeltStatus':1,'SeatbeltLock':0})
     message = can.Message(arbitration_id=SeatbeltSystemMsg.frame_id, data=data, is_extended_id=False)
     try:
         can_bus.send(message)
