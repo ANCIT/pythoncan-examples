@@ -16,7 +16,7 @@ accelerationMsg = db.get_message_by_name('AccelarationMsg')
 seatbeltMsg = db.get_message_by_name('SeatbeltMsg')
 
 def _lock_Seatbelt():
-    data = seatbeltMsg.encode({'SeatbeltStatus':0,'SeatbeltLock':1,})
+    data = seatbeltMsg.encode({'SeatbeltStatus':1,'SeatbeltLock':1,})
     message = can.Message(arbitration_id=seatbeltMsg.frame_id, data=data, is_extended_id=False)
     try:
         bus.send(message)
@@ -25,7 +25,7 @@ def _lock_Seatbelt():
         print("Message not sent")
         
 def _unlock_Seatbelt():
-    data = seatbeltMsg.encode({'SeatbeltStatus':0,'SeatbeltLock':0})
+    data = seatbeltMsg.encode({'SeatbeltStatus':1,'SeatbeltLock':0})
     message = can.Message(arbitration_id=seatbeltMsg.frame_id, data=data, is_extended_id=False)
     try:
         bus.send(message)
