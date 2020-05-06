@@ -184,7 +184,7 @@ if __name__ == '__main__':
     guiAppThread.start()
     MsgRcvThread.start()
     # PrintInstructions
-    print("Press below Keys to Test\n\t'a' to Accelerate\n\t'd' to Decelerate\n\t'b' to Brake\n")
+    print("Press below Keys to Test\n\t'a' to Accelerate\n\t'b' to Brake\n")
     #Launch GUI
     sys.exit(guiAppThread.launch())
     
