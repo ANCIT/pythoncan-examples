@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
+encoding//CANoe.automation/CANOeConfigurationAutomation.py=UTF-8
 encoding//CANoe/Python_CANoe.py=utf-8
-encoding/CANOeConfigurationAutomation.py=UTF-8
+encoding//CANoe/__init__.py=UTF-8
+encoding//robot-framework/CANoe/base/CANoe.py=utf-8

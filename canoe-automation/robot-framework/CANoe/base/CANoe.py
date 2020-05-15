@@ -36,7 +36,7 @@ class CANoe:
         print(self.Measurement)
 
     def load_testsetup(self, tseName):
-        if (self.application != None):
+        if (self.application != None and len(tseName) > 0):
             # check for valid file and it is *.cfg file
             if os.path.isfile(tseName) and (os.path.splitext(tseName)[1] == ".tse"):
                 testSetup = self.application.Configuration.TestSetup
@@ -46,6 +46,13 @@ class CANoe:
                 raise RuntimeError("Can't find CANoe tse file")
         else:
             raise RuntimeError("CANoe Application is missing,unable to open simulation")
+        
+    def waiting(self, wait_time=1.0):
+        """ Wait the given time
+        Keyword argument:
+        wait_time -- the time to wait in second (default 1.0)
+        """
+        time.sleep(float(wait_time))
         
     def start_testmodule(self):
         if (self.application.Configuration.TestSetup.TestEnvironments.Item(1) != None):
